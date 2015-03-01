@@ -22,6 +22,10 @@ public class SampleContextEventListener implements ServletContextListener {
             }
             SSOAgentConfigs.initConfig(properties);
             SSOAgentConfigs.setIdPUrl(System.getenv("STRATOS_SAML_ENDPOINT"));
+            String clusterHostName = System.getenv("STRATOS_HOST_NAME");
+            String hostPort = System.getenv("STRATOS_HOST_PORT");
+            String consumerUrl = "http://" + clusterHostName + ":" + hostPort + "/travelocity.com/home.jsp";
+            SSOAgentConfigs.setConsumerUrl(consumerUrl);
         } catch (IOException e){
             LOGGER.log(Level.SEVERE, e.getMessage(), e);
         } catch (SSOAgentException e) {
